@@ -13,9 +13,11 @@
 
   --cor-texto: #22201d;
   --cor-texto-suave: #6e6660;
-  --cor-fundo: #fffcf8;
+  --cor-fundo: #ffffff;
   --cor-fundo-suave: #f6f1ea;
   --cor-borda: #e6dccd;
+  --cor-header-texto: #f6ece6;
+  --cor-header-texto-suave: #d9b9bd;
 
   --fonte-titulo: "Playfair Display", Georgia, "Times New Roman", serif;
   --fonte-corpo: "Source Serif 4", Georgia, "Times New Roman", serif;
@@ -40,10 +42,8 @@ body {
 /* ---------- cabeçalho ---------- */
 
 header.site {
-  border-top: 3px solid var(--cor-primaria);
-  border-bottom: 1px solid var(--cor-borda);
-  background: var(--cor-fundo);
-  padding: 1.3rem 1.5rem;
+  background: var(--cor-primaria);
+  padding: 1.4rem 1.5rem;
 }
 
 header.site .wrap {
@@ -60,12 +60,12 @@ header.site a.logo {
   font-family: var(--fonte-titulo);
   font-style: italic;
   font-weight: 700;
-  font-size: 1.55rem;
-  color: var(--cor-texto);
+  font-size: 1.65rem;
+  color: var(--cor-header-texto);
   text-decoration: none;
   letter-spacing: 0.01em;
 }
-header.site a.logo:hover { color: var(--cor-primaria); }
+header.site a.logo:hover { color: #fff; }
 
 header.site a.voltar {
   font-family: var(--fonte-ui);
@@ -73,11 +73,11 @@ header.site a.voltar {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--cor-texto-suave);
+  color: var(--cor-header-texto-suave);
   text-decoration: none;
   white-space: nowrap;
 }
-header.site a.voltar:hover { color: var(--cor-primaria); }
+header.site a.voltar:hover { color: #fff; }
 
 /* ---------- conteúdo principal ---------- */
 
@@ -92,8 +92,10 @@ h1 {
   font-weight: 700;
   font-size: 2.6rem;
   line-height: 1.15;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.7rem;
+  padding-bottom: 0.9rem;
   color: var(--cor-texto);
+  border-bottom: 3px solid var(--cor-primaria);
 }
 
 h2 {
@@ -116,13 +118,16 @@ h2 {
 
 a.leia-mais {
   font-family: var(--fonte-ui);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--cor-primaria);
   text-decoration: none;
+  border-bottom: 1px solid var(--cor-primaria);
+  padding-bottom: 2px;
 }
-a.leia-mais:hover { text-decoration: underline; }
+a.leia-mais:hover { color: var(--cor-primaria-escura); border-color: var(--cor-primaria-escura); }
 
 .tag {
   display: inline-block;
@@ -131,9 +136,9 @@ a.leia-mais:hover { text-decoration: underline; }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  color: var(--cor-primaria);
-  background: var(--cor-primaria-suave);
-  padding: 0.3rem 0.75rem;
+  color: #fff;
+  background: var(--cor-primaria);
+  padding: 0.35rem 0.85rem;
   border-radius: 2px;
   margin-bottom: 0.9rem;
 }
@@ -163,17 +168,17 @@ a.leia-mais:hover { text-decoration: underline; }
   margin-bottom: 0.6rem;
 }
 .post-card h2 a {
-  color: var(--cor-texto);
+  color: var(--cor-primaria-escura);
   text-decoration: none;
   background-image: linear-gradient(var(--cor-primaria), var(--cor-primaria));
   background-position: 0 100%;
   background-repeat: no-repeat;
-  background-size: 0% 1px;
+  background-size: 0% 2px;
   transition: background-size 0.25s ease;
 }
 .post-card h2 a:hover {
   color: var(--cor-primaria);
-  background-size: 100% 1px;
+  background-size: 100% 2px;
 }
 
 .post-card p.resumo {
@@ -204,8 +209,8 @@ a.leia-mais:hover { text-decoration: underline; }
 .cta-curso {
   font-family: var(--fonte-corpo);
   background: var(--cor-fundo-suave);
-  border-top: 1px solid var(--cor-borda);
-  border-bottom: 1px solid var(--cor-borda);
+  border-top: 2px solid var(--cor-primaria);
+  border-bottom: 2px solid var(--cor-primaria);
   padding: 1.8rem 2rem;
   margin: 2.8rem 0;
   text-align: center;
