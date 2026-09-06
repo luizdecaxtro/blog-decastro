@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="titulo-pagina">Blog DeCastro</title>
+<meta name="description" id="meta-descricao" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html">Blog DeCastro</a>
+    <a class="voltar" href="https://lojasdecastro.com.br">← Voltar para lojasdecastro.com.br</a>
+  </div>
+</header>
+
+<main id="conteudo-post">
+  <p style="font-family: var(--fonte-ui); color: var(--cor-texto-suave);">Carregando post…</p>
+</main>
+
+<footer class="site">
+  Blog DeCastro | O Canal do Conhecimento — <a href="https://lojasdecastro.com.br">lojasdecastro.com.br</a>
+</footer>
+
+<script>
+  // Troque pela URL do seu Worker depois do deploy
+  const API_BASE = "https://blog-decastro-cms.SEU-SUBDOMINIO.workers.dev";
+
+  function formatarData(iso) {
+    if (!iso) return "";
+    const d = new Date(iso.replace(" ", "T") + "Z");
+    return d.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  async function carregarPost() {
+    const params = new URLSearchParams(location.search);
+    const slug = params.get("slug");
+    const container = document.getElementById("conteudo-post");
+
+    if (!slug) {
+      container.innerHTML = '<p>Post não especificado. <a href="index.html">Voltar para o blog</a>.</p>';
+      return;
+    }
+
+    try {
+      const r = await fetch(API_BASE + "/api/posts/" + encodeURIComponent(slug));
+      if (!r.ok) {
+        container.innerHTML = '<p>Post não encontrado. <a href="index.html">Voltar para o blog</a>.</p>';
+        return;
+      }
+      const p = await r.json();
+
+      document.getElementById("titulo-pagina").textContent = p.title + " — Blog DeCastro";
+      document.getElementById("meta-descricao").setAttribute("content", p.summary || "");
+
+      const videoHtml = p.video_id ? `
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/${p.video_id}" title="${p.title}" allowfullscreen></iframe>
+        </div>` : "";
+
+      const ctaHtml = p.course_link ? `
+        <div class="cta-curso">
+          <p><strong>Quer se aprofundar nesse assunto?</strong> Isso é só uma introdução — no curso <strong>Gerenciamento Empresarial</strong> você aprende o passo a passo completo.</p>
+          <a class="botao" href="${p.course_link}">Conhecer o curso</a>
+        </div>` : "";
+
+      container.innerHTML = `
+        <p><a class="leia-mais" href="index.html">← Todos os posts</a></p>
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+        <p class="data">${formatarData(p.created_at)}</p>
+        <h1>${p.title}</h1>
+        ${videoHtml}
+        ${p.body_html || ""}
+        ${ctaHtml}
+      `;
+    } catch (e) {
+      container.innerHTML = "<p>Não foi possível carregar o post agora. Tente recarregar a página.</p>";
+    }
+  }
+
+  carregarPost();
+</script>
+
+</body>
+</html>
