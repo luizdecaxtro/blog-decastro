@@ -69,13 +69,16 @@
           <a class="botao" href="${p.course_link}">Conhecer o curso</a>
         </div>` : "";
 
+      const capaHtml = p.cover_image ? `<img class="capa-post" src="${p.cover_image}" alt="${p.title}">` : "";
+
       container.innerHTML = `
         <p><a class="leia-mais" href="index.html">← Todos os posts</a></p>
         ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
         <p class="data">${formatarData(p.created_at)}</p>
         <h1>${p.title}</h1>
+        ${capaHtml}
         ${videoHtml}
-        ${p.body_html || ""}
+        <div class="corpo-post">${p.body_html || ""}</div>
         ${ctaHtml}
       `;
     } catch (e) {
