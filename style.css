@@ -187,6 +187,67 @@ a.leia-mais:hover { color: var(--cor-primaria-escura); border-color: var(--cor-p
   margin: 0 0 1rem;
 }
 
+/* ---------- imagens de capa ---------- */
+
+.capa-lista {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-bottom: 1.2rem;
+}
+
+.capa-post {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin: 1.6rem 0;
+}
+
+/* ---------- corpo do post ---------- */
+
+.corpo-post {
+  font-family: var(--fonte-corpo);
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--cor-texto);
+}
+
+.corpo-post p {
+  margin: 0 0 1.3rem;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.corpo-post img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+  margin: 1.6rem 0;
+}
+
+.corpo-post a { color: var(--cor-primaria); }
+.corpo-post a:hover { color: var(--cor-primaria-escura); }
+
+.corpo-post ul, .corpo-post ol {
+  margin: 0 0 1.3rem;
+  padding-left: 1.4rem;
+}
+.corpo-post li { margin-bottom: 0.4rem; }
+
+.corpo-post blockquote {
+  margin: 1.8rem 0;
+  padding: 0.2rem 1.4rem;
+  border-left: 3px solid var(--cor-primaria);
+  font-style: italic;
+  color: var(--cor-texto-suave);
+}
+
 /* ---------- vídeo incorporado (responsivo) ---------- */
 
 .video-wrap {
