@@ -54,6 +54,7 @@
       }
       container.innerHTML = posts.map((p) => `
         <article class="post-card">
+          ${p.cover_image ? `<a href="post.html?slug=${encodeURIComponent(p.slug)}"><img class="capa-lista" src="${p.cover_image}" alt="${p.title}"></a>` : ""}
           ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
           <p class="data">${formatarData(p.created_at)}</p>
           <h2><a href="post.html?slug=${encodeURIComponent(p.slug)}">${p.title}</a></h2>
